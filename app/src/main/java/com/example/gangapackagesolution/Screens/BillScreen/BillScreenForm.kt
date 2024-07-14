@@ -37,6 +37,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -178,8 +179,8 @@ fun ActionCard(
     expandCardCompose: @Composable () -> Unit,
     modifier: Modifier = Modifier
 ) {
-    var expandState by remember {
-        mutableStateOf(false) // make sure to set it to false default, I enabled true only for testing :)
+    var expandState by rememberSaveable {           // used rememberSaveable here, because having state of ths here would be an overkill
+        mutableStateOf(false)
     }
     Card(
         colors = CardDefaults.cardColors(containerColor = Color(0xFF673AB7)),
